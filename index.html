@@ -103,12 +103,12 @@
         right: 20px;
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 8px;
         align-items: flex-end;
       }
 
       .hero-badge-img {
-        height: 40px;
+        height: 55px;
         width: auto;
         opacity: 0.85;
         transition: opacity 0.3s ease, transform 0.3s ease;
@@ -193,6 +193,50 @@
 
       .software-section {
         background-color: #ffffff;
+      }
+
+      .code-example {
+        background-color: #1e1e1e;
+        color: #d4d4d4;
+        padding: 1.5rem;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        overflow-x: auto;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+      .code-example .code-comment {
+        color: #6a9955;
+      }
+
+      .code-example .code-keyword {
+        color: #569cd6;
+      }
+
+      .code-example .code-string {
+        color: #ce9178;
+      }
+
+      .code-example .code-function {
+        color: #dcdcaa;
+      }
+
+      .sdk-badges {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .sdk-badge {
+        background-color: var(--edgeberry-blue);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 0.95rem;
       }
 
       /* Open Source Banner */
@@ -376,16 +420,13 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#mission">Mission</a>
+            <a class="nav-link" href="#platform">Hardware Platform</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#hardware">Devices</a>
+            <a class="nav-link" href="#software">Development Tools</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#cartridges">Cartridges</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#software">Device Hub</a>
+            <a class="nav-link" href="#cartridges">Hardware Cartridges</a>
           </li>
         </ul>
       </div>
@@ -397,12 +438,12 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6">
-          <h1 class="hero-title">Raspberry Pi for the IoT Edge</h1>
-          <h2 class="hero-subtitle">Adapting Raspberry Pi for the Challenges of IoT</h2>
+          <h1 class="hero-title">A Connected Brain for Intelligent Machines</h1>
+          <h2 class="hero-subtitle">Designed for the Digital Realm to Converge into the Real World</h2>
           <p class="hero-text">
-            Edgeberry is an open-source ecosystem that enhances the Raspberry Pi with hardware, software, and mechanical 
-            features for optimizing its usability as an IoT device. Aimed at fast and lean develop-and-deploy iterations, 
-            Edgeberry simplifies the process of bridging the physical world with the digital realm.
+            Edgeberry is a hardware platform for engineers building smart machines. 
+            Start with a production-ready Linux computer, add the hardware interfaces you need through simple cartridges, 
+            and write your application in Python, Node.js, or Node-RED. Focus on the innovation of your machine—not on the generic details.
           </p>
           <div class="d-flex gap-3">
             <a href="https://github.com/Edgeberry" class="btn btn-edgeberry-primary" target="_blank">
@@ -414,6 +455,19 @@
           </div>
         </div>
         <div class="col-lg-6 text-center mt-5 mt-lg-0">
+          <img src="assets/IntelligentConnectedMachines.png" alt="Intelligent Connected Machines" class="hero-image" 
+               style="max-height: 400px;"
+               onerror="this.src='assets/Edgeberry_logo.png'; this.style.maxWidth='400px';">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Section -->
+  <section id="platform" class="content-section hardware-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0 text-center">
           <div class="hero-image-container">
             <img src="assets/hero-device.png" alt="Edgeberry Device" class="hero-image" 
                  onerror="this.src='assets/Edgeberry_logo.png'; this.style.maxWidth='400px';">
@@ -423,70 +477,75 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-6">
+          <h2 class="section-title">A Robust Linux Computer</h2>
+          <h3 class="section-subtitle">Designed for Deployment in the Real World</h3>
+          <p class="section-text">
+            At its core, Edgeberry is a full-blown Linux computer built on the trusted Raspberry Pi platform. 
+            This isn't a microcontroller or limited embedded system—it's a complete operating system where you can 
+            install packages, run databases, host web servers, and write applications in your preferred language.
+          </p>
+          <p class="section-text">
+            Designed for production environments, Edgeberry comes with industrial-grade power supply, rugged enclosure, 
+            and all the connectivity you expect. Deploy your smart machines with confidence, knowing they're built on 
+            proven, reliable hardware that's been battle-tested in millions of applications worldwide.
+          </p>
+          <div class="d-flex gap-3 mt-3">
+            <a href="https://www.elecrow.com/store/Edgeberry" class="btn btn-edgeberry-primary" target="_blank">
+              Explore Hardware
+            </a>
+            <a href="#cartridges" class="btn btn-edgeberry-secondary">
+              Explore Cartridges
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Open Source Statement -->
-  <section id="mission" class="opensource-banner">
+  <!-- Development Tools Section -->
+  <section id="software" class="content-section software-section">
     <div class="container">
-      <p class="opensource-text">
-        <span class="opensource-highlight">Fully Open Source.</span> No Paywalls. No Restrictions.<br>
-        Democratizing IoT Technology for Everyone.
-      </p>
-    </div>
-  </section>
+      <div class="row align-items-center mb-5">
+        <div class="col-lg-6 order-lg-2 mb-5 mb-lg-0">
+          <div class="code-example">
+<span class="code-comment"># Python Example - Read temperature sensor</span>
+<span class="code-keyword">import</span> dbus
 
-  <!-- Hardware Section - Edgeberry Device -->
-  <section id="hardware" class="content-section hardware-section">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 mb-5 mb-lg-0">
-          <div id="deviceCarousel" class="carousel slide carousel-section" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#deviceCarousel" data-bs-slide-to="0" class="active"></button>
-              <button type="button" data-bs-target="#deviceCarousel" data-bs-slide-to="1"></button>
-              <button type="button" data-bs-target="#deviceCarousel" data-bs-slide-to="2"></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="assets/edgeberry-device.png" class="d-block w-100" alt="Edgeberry Device"
-                     onerror="this.src='assets/Edgeberry_logo.png';">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/device-assembled.png" class="d-block w-100" alt="Edgeberry with Cartridge"
-                     onerror="this.src='assets/Edgeberry_logo.png';">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/hero-device.png" class="d-block w-100" alt="Edgeberry Device Detail"
-                     onerror="this.src='assets/Edgeberry_logo.png';">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#deviceCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#deviceCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+bus = dbus.SystemBus()
+edgeberry = bus.<span class="code-function">get_object</span>(<span class="code-string">'io.edgeberry.Core'</span>)
+
+<span class="code-comment"># Send telemetry to the cloud</span>
+data = {<span class="code-string">"temperature"</span>: 22.5, <span class="code-string">"humidity"</span>: 45}
+edgeberry.<span class="code-function">SendMessage</span>(json.<span class="code-function">dumps</span>(data))
+          </div>
+          <div class="sdk-badges">
+            <span class="sdk-badge"><i class="fab fa-python"></i> Python SDK</span>
+            <span class="sdk-badge"><i class="fab fa-node-js"></i> Node.js SDK</span>
+            <span class="sdk-badge"><i class="fas fa-sitemap"></i> Node-RED Integration</span>
           </div>
         </div>
-        <div class="col-lg-6">
-          <h2 class="section-title">Edgeberry Device</h2>
-          <h3 class="section-subtitle">Hardware Foundation for IoT</h3>
+        <div class="col-lg-6 order-lg-1">
+          <h2 class="section-title">Development Tools</h2>
+          <h3 class="section-subtitle">SDKs and Cloud Infrastructure</h3>
           <p class="section-text">
-            The Edgeberry device connects all components to the Raspberry Pi, providing it with a robust power supply, 
-            status indicators (LED and buzzer), and a unique identifier for cloud connectivity.
+            Our SDKs give you reliable, straightforward access to both your hardware interfaces and cloud connectivity. 
+            Read sensors, control outputs, send telemetry, receive commands—all through simple, well-documented APIs. 
+            Whether you prefer Python, Node.js, or Node-RED, you'll have the tools you need to build with confidence.
           </p>
           <p class="section-text">
-            Together with the Enclosure that shields the system from real-world environmental challenges, 
-            Edgeberry transforms your Raspberry Pi into a rugged, production-ready IoT device. Designed with open tools 
-            like KiCad EDA and FreeCAD.
+            Deploy your own cloud infrastructure with the Edgeberry Device Hub. It's a self-hostable service 
+            that connects your fleet of machines to your applications through WebSocket or REST APIs. Built with Node-RED integration, 
+            real-time streams, and a clean web dashboard. Deploy with Docker on any cloud provider or on-premises—your data stays under your control.
           </p>
-          <a href="https://www.elecrow.com/store/Edgeberry" class="btn btn-edgeberry-primary mt-3" target="_blank">
-            Visit OEM Hardware Store
-          </a>
+          <div class="d-flex gap-3 mt-3">
+            <a href="https://github.com/Edgeberry/Edgeberry-device-software" class="btn btn-edgeberry-primary" target="_blank">
+              <i class="fab fa-github me-2"></i>Explore SDKs
+            </a>
+            <a href="https://github.com/Edgeberry/Edgeberry-Device-Hub" class="btn btn-edgeberry-secondary" target="_blank">
+              Device Hub
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -528,22 +587,24 @@
           </div>
         </div>
         <div class="col-lg-6 order-lg-1">
-          <h2 class="section-title">Hardware Cartridges</h2>
-          <h3 class="section-subtitle">Custom Hardware for Each Application</h3>
+          <h2 class="section-title">Hardware Interfaces Made Simple</h2>
+          <h3 class="section-subtitle">Plug-and-Play Hardware Cartridges</h3>
           <p class="section-text">
-            Hardware Cartridges are the custom hardware component for each unique application, complementing the generic computer hardware. 
-            Add CAN bus, RS485, Console ports, analog I/O, and more to match your specific use case.
+            Need CAN bus for automotive? RS485 for industrial sensors? Analog inputs for monitoring? 
+            Just plug in the right cartridge. No breadboards, no soldering, no circuit design. 
+            Each cartridge is a complete, tested hardware module that just works.
           </p>
           <p class="section-text">
-            Design your own cartridges using the open-source KiCad EDA template, or explore existing designs. 
-            Create the perfect solution for your unique application - from automotive diagnostics to industrial automation.
+            Browse our range of ready-made cartridges for common applications, or work with a hardware engineer 
+            to design a custom cartridge for your specific needs. The cartridge system lets you focus on building your machine 
+            while hardware experts handle the electronics.
           </p>
           <div class="d-flex gap-3 mt-3">
-            <a href="https://github.com/Edgeberry/Edgeberry_KiCad_template" class="btn btn-edgeberry-primary" target="_blank">
-              Design Your Own
+            <a href="https://www.elecrow.com/store/Edgeberry" class="btn btn-edgeberry-primary" target="_blank">
+              Browse Cartridges
             </a>
             <a href="https://github.com/Edgeberry/Hardware" class="btn btn-edgeberry-secondary" target="_blank">
-              Explore Existing
+              Design Guide
             </a>
           </div>
         </div>
@@ -551,34 +612,13 @@
     </div>
   </section>
 
-  <!-- Software Section -->
-  <section id="software" class="content-section software-section">
+  <!-- Open Source Banner -->
+  <section class="opensource-banner">
     <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 order-lg-2 text-center mb-5 mb-lg-0">
-          <img src="assets/devicehub-screenshot.png" alt="Edgeberry Device Hub" class="section-image"
-               onerror="this.src='assets/Edgeberry_logo.png'; this.style.maxWidth='350px';">
-        </div>
-        <div class="col-lg-6 order-lg-1">
-          <h2 class="section-title">Software</h2>
-          <h3 class="section-subtitle">Edgeberry Device Hub</h3>
-          <p class="section-text">
-            The Device Hub is the bridge connecting real-world devices with cloud applications. 
-            It's a self-hostable service that provides secure device management, telemetry collection, and bidirectional messaging.
-          </p>
-          <p class="section-text">
-            Built with modern architecture featuring MQTT messaging, secure mTLS authentication, and WebSocket APIs. 
-            Deploy on-premises or in the cloud with Docker - you maintain full control of your data.
-          </p>
-          <p class="section-text">
-            Integrate seamlessly with Node-RED, custom dashboards, and analytics platforms. 
-            The Edgeberry project is fully open-source with no features locked behind a paywall.
-          </p>
-          <a href="https://github.com/Edgeberry/Edgeberry-Device-Hub" class="btn btn-edgeberry-primary mt-3" target="_blank">
-            <i class="fab fa-github me-2"></i>View on GitHub
-          </a>
-        </div>
-      </div>
+      <p class="opensource-text">
+        <span class="opensource-highlight">Fully Open Source.</span> No Paywalls. No Restrictions.<br>
+        Hardware schematics, software source code, and mechanical designs—all freely available.
+      </p>
     </div>
   </section>
 
