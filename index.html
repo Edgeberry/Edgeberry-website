@@ -57,7 +57,7 @@
 
       /* Hero Section */
       .hero-section {
-        background-color: #f8f9fa;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         padding: 80px 0;
         min-height: 600px;
         display: flex;
@@ -91,6 +91,33 @@
         max-width: 100%;
         height: auto;
         filter: drop-shadow(0 10px 30px rgba(0,0,0,0.15));
+      }
+
+      .hero-image-container {
+        position: relative;
+      }
+
+      .hero-badges {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-end;
+      }
+
+      .hero-badge-img {
+        height: 40px;
+        width: auto;
+        opacity: 0.85;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+      }
+
+      .hero-badge-img:hover {
+        opacity: 1;
+        transform: scale(1.05);
       }
 
       /* Buttons */
@@ -387,8 +414,14 @@
           </div>
         </div>
         <div class="col-lg-6 text-center mt-5 mt-lg-0">
-          <img src="assets/hero-device.png" alt="Edgeberry Device" class="hero-image" 
-               onerror="this.src='assets/Edgeberry_logo.png'; this.style.maxWidth='400px';">
+          <div class="hero-image-container">
+            <img src="assets/hero-device.png" alt="Edgeberry Device" class="hero-image" 
+                 onerror="this.src='assets/Edgeberry_logo.png'; this.style.maxWidth='400px';">
+            <div class="hero-badges">
+              <img src="assets/poweredbypi.png" alt="Powered by Raspberry Pi" class="hero-badge-img">
+              <img src="assets/oshw-certification-mark.png" alt="OSHW Certified" class="hero-badge-img">
+            </div>
+          </div>
         </div>
       </div>
     </div>
