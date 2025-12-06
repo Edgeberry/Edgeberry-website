@@ -426,6 +426,122 @@
         background-color: var(--edgeberry-blue);
       }
 
+      /* Development Kits Section */
+      .development-kits-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      }
+
+      .dev-kit-card {
+        background: white;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .dev-kit-card:hover {
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      }
+
+      .dev-kit-icon-container {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .dev-kit-icon {
+        font-size: 3rem;
+        color: var(--edgeberry-blue);
+      }
+
+      .dev-kit-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--edgeberry-carbon);
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .dev-kit-image-wrapper {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+        border-radius: 8px;
+        background: #f8f9fa;
+      }
+
+      .dev-kit-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));
+      }
+
+      .dev-kit-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .dev-kit-features {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 1.5rem;
+      }
+
+      .dev-kit-features li {
+        padding: 0.4rem 0;
+        font-size: 0.95rem;
+        color: #555;
+        display: flex;
+        align-items: center;
+      }
+
+      .dev-kit-features li i {
+        color: var(--edgeberry-blue);
+        margin-right: 0.75rem;
+        font-size: 0.85rem;
+      }
+
+      .dev-kit-description {
+        font-size: 0.95rem;
+        color: #666;
+        line-height: 1.6;
+      }
+
+      .dev-kit-actions {
+        margin-top: auto;
+        padding-top: 1.5rem;
+      }
+
+      .btn-dev-kit {
+        display: block;
+        width: 100%;
+        background-color: var(--edgeberry-blue);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        font-size: 1rem;
+        font-weight: 700;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .btn-dev-kit:hover {
+        background-color: #0006e6;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,7,255,0.3);
+      }
+
       /* Responsive */
       @media (max-width: 768px) {
         .hero-title {
@@ -540,133 +656,104 @@
     </div>
   </section>
 
-  <!-- Development Tools Section -->
-  <section id="software" class="content-section hardware-section">
+  <!-- Development Kits Section -->
+  <section id="software" class="content-section development-kits-section">
     <div class="container">
-      <div class="row align-items-center mb-5">
-        <div class="col-lg-6 order-lg-2 mb-5 mb-lg-0">
-          <div class="stacked-carousels">
-            <!-- Code Examples Carousel -->
-            <div class="code-carousel">
-              <div id="codeCarousel" class="carousel slide carousel-code-section" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#codeCarousel" data-bs-slide-to="0" class="active"></button>
-                  <button type="button" data-bs-target="#codeCarousel" data-bs-slide-to="1"></button>
-                  <button type="button" data-bs-target="#codeCarousel" data-bs-slide-to="2"></button>
-                </div>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <div class="code-example">
-<span class="code-comment"># Python Example - Read temperature sensor</span>
-<span class="code-keyword">import</span> dbus
-<span class="code-keyword">import</span> json
-
-bus = dbus.SystemBus()
-edgeberry = bus.<span class="code-function">get_object</span>(<span class="code-string">'io.edgeberry.Core'</span>)
-
-<span class="code-comment"># Send telemetry to the cloud</span>
-data = {<span class="code-string">"temperature"</span>: 22.5, <span class="code-string">"humidity"</span>: 45}
-edgeberry.<span class="code-function">SendMessage</span>(json.<span class="code-function">dumps</span>(data))
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="code-example">
-<span class="code-comment">// Node.js Example - Control outputs</span>
-<span class="code-keyword">const</span> dbus = <span class="code-function">require</span>(<span class="code-string">'dbus-native'</span>);
-
-<span class="code-keyword">const</span> bus = dbus.<span class="code-function">systemBus</span>();
-<span class="code-keyword">const</span> edgeberry = bus.<span class="code-function">getService</span>(<span class="code-string">'io.edgeberry.Core'</span>);
-
-<span class="code-comment">// Send command to device</span>
-<span class="code-keyword">const</span> message = JSON.<span class="code-function">stringify</span>({<span class="code-string">"relay"</span>: <span class="code-string">"on"</span>});
-edgeberry.<span class="code-function">SendMessage</span>(message);
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="code-example">
-<span class="code-comment">// Node-RED Example</span>
-<span class="code-comment">// Visual programming - no code needed!</span>
-
-[Sensor Input] → [Process Data] → [Edgeberry Out]
-
-<span class="code-comment">// Drag and drop nodes to:</span>
-<span class="code-comment">// - Read sensors</span>
-<span class="code-comment">// - Send telemetry</span>
-<span class="code-comment">// - Receive cloud commands</span>
-                    </div>
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#codeCarousel" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#codeCarousel" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
+      <div class="text-center mb-5">
+        <h2 class="section-title">Complete Development Ecosystem</h2>
+        <p class="section-text" style="max-width: 800px; margin: 0 auto;">
+          Everything you need to build, customize, and deploy intelligent machines—from software APIs to hardware schematics to mechanical designs.
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Software Development Kit (SDK) -->
+        <div class="col-lg-4">
+          <div class="dev-kit-card">
+            <div class="dev-kit-icon-container">
+              <i class="fas fa-laptop-code dev-kit-icon"></i>
             </div>
-            
-            <!-- Hardware Cartridges Carousel -->
-            <div class="hardware-carousel">
-              <div id="devToolsCartridgeCarousel" class="carousel slide carousel-hardware-section" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#devToolsCartridgeCarousel" data-bs-slide-to="0" class="active"></button>
-                  <button type="button" data-bs-target="#devToolsCartridgeCarousel" data-bs-slide-to="1"></button>
-                  <button type="button" data-bs-target="#devToolsCartridgeCarousel" data-bs-slide-to="2"></button>
-                </div>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="assets/cartridges-nobg.png" class="d-block w-100" alt="Hardware Cartridges"
-                         onerror="this.src='assets/Edgeberry_logo.png';">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="assets/cartridge-console-nobg.png" class="d-block w-100" alt="Console & CAN Cartridge"
-                         onerror="this.src='assets/Edgeberry_logo.png';">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="assets/cartridge-sense-nobg.png" class="d-block w-100" alt="Sense & Drive Cartridge"
-                         onerror="this.src='assets/Edgeberry_logo.png';">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#devToolsCartridgeCarousel" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#devToolsCartridgeCarousel" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
+            <h3 class="dev-kit-title">Software Development Kit</h3>
+            <div class="dev-kit-image-wrapper">
+              <img src="assets/devicehub-screenshot.png" alt="Software SDK" class="dev-kit-image">
+            </div>
+            <div class="dev-kit-content">
+              <ul class="dev-kit-features">
+                <li><i class="fas fa-check-circle"></i> Python & Node.js SDKs</li>
+                <li><i class="fas fa-check-circle"></i> Node-RED visual programming</li>
+                <li><i class="fas fa-check-circle"></i> D-Bus API for any language</li>
+                <li><i class="fas fa-check-circle"></i> Cloud connectivity & telemetry</li>
+                <li><i class="fas fa-check-circle"></i> Complete documentation & examples</li>
+              </ul>
+              <p class="dev-kit-description">
+                Write your application in your preferred language with simple, well-documented APIs. Focus on your machine's logic, not infrastructure.
+              </p>
+            </div>
+            <div class="dev-kit-actions">
+              <a href="https://github.com/Edgeberry/Edgeberry-device-software" class="btn btn-dev-kit" target="_blank">
+                View SDK
+              </a>
             </div>
           </div>
         </div>
-        <div class="col-lg-6 order-lg-1">
-          <h2 class="section-title">Effortless Integration</h2>
-          <h3 class="section-subtitle">Build your application with The Development Tools</h3>
-          <p class="section-text">
-            Your application is what makes your machine unique. Our Software Development Kit (SDK) provides the tools 
-            you need to interact with hardware and cloud. 
-            Write your application in Python, Node.js, or Node-RED with simple, well-documented APIs.
-          </p>
-          <div class="d-flex gap-3 mt-3">
-            <a href="https://github.com/Edgeberry/Edgeberry-device-software" class="btn btn-edgeberry-primary" target="_blank">
-              <i class="fab fa-github me-2"></i>Software SDK
-            </a>
+
+        <!-- Hardware Development Kit (HDK) -->
+        <div class="col-lg-4">
+          <div class="dev-kit-card">
+            <div class="dev-kit-icon-container">
+              <i class="fas fa-microchip dev-kit-icon"></i>
+            </div>
+            <h3 class="dev-kit-title">Hardware Development Kit</h3>
+            <div class="dev-kit-image-wrapper">
+              <img src="assets/cartridges-nobg.png" alt="Hardware Cartridges" class="dev-kit-image">
+            </div>
+            <div class="dev-kit-content">
+              <ul class="dev-kit-features">
+                <li><i class="fas fa-check-circle"></i> KiCad design templates</li>
+                <li><i class="fas fa-check-circle"></i> Complete schematics & PCB layouts</li>
+                <li><i class="fas fa-check-circle"></i> Ready-made cartridge solutions</li>
+                <li><i class="fas fa-check-circle"></i> Pinout documentation</li>
+                <li><i class="fas fa-check-circle"></i> Manufacturing guidelines</li>
+              </ul>
+              <p class="dev-kit-description">
+                Design custom hardware cartridges for your specific needs or use ready-made solutions. All schematics and designs are open source.
+              </p>
+            </div>
+            <div class="dev-kit-actions">
+              <a href="https://github.com/Edgeberry/Hardware" class="btn btn-dev-kit" target="_blank">
+                View HDK
+              </a>
+            </div>
           </div>
-          <hr/>
-          <p class="section-text">
-            The Hardware Development Kit (HDK) lets you design custom cartridges for your specific needs, or use our 
-            ready-made solutions. Combined with the optional Device Hub for fleet management and cloud connectivity, 
-            you have everything to bring your intelligent machine to life.
-          </p>
-          <div class="d-flex gap-3 mt-3">
-            <a href="https://www.elecrow.com/store/Edgeberry" class="btn btn-edgeberry-primary" target="_blank">
-              Browse Cartridges
-            </a>
-            <a href="https://github.com/Edgeberry/Hardware" class="btn btn-edgeberry-secondary" target="_blank">
-              Design Guide
-            </a>
+        </div>
+
+        <!-- Mechanical Development Kit (MDK) -->
+        <div class="col-lg-4">
+          <div class="dev-kit-card">
+            <div class="dev-kit-icon-container">
+              <i class="fas fa-cube dev-kit-icon"></i>
+            </div>
+            <h3 class="dev-kit-title">Mechanical Development Kit</h3>
+            <div class="dev-kit-image-wrapper">
+              <img src="assets/device-assembled.png" alt="Mechanical Design" class="dev-kit-image">
+            </div>
+            <div class="dev-kit-content">
+              <ul class="dev-kit-features">
+                <li><i class="fas fa-check-circle"></i> 3D printable enclosures</li>
+                <li><i class="fas fa-check-circle"></i> FreeCAD mechanical designs</li>
+                <li><i class="fas fa-check-circle"></i> Step-by-step assembly guides</li>
+                <li><i class="fas fa-check-circle"></i> Custom faceplate templates</li>
+                <li><i class="fas fa-check-circle"></i> DIN rail mounting options</li>
+              </ul>
+              <p class="dev-kit-description">
+                Customize the physical design to fit your application. 3D print your own enclosures and faceplates with complete mechanical specifications.
+              </p>
+            </div>
+            <div class="dev-kit-actions">
+              <a href="https://www.thingiverse.com/thing:6595172" class="btn btn-dev-kit" target="_blank">
+                View MDK
+              </a>
+            </div>
           </div>
         </div>
       </div>
