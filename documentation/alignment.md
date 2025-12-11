@@ -35,7 +35,7 @@ Edgeberry is:
 After the visitor has a basic understanding of what the product is, there's the "Getting Started" section. This section is the "how" in the story the website tells; explaining the visitor how to get started with the product. This section explains the product's development workflow understandable from the perspective of the target audience. We're trying to instill a feeling of competence ("I can do this!") in the visitor by showing the user that the Edgeberry platform speaks their language; it is an extention of the environment they already know and love.
 
 ### Values
-The values section explains the values of the Edgeberry project. These values are the foundation of the Edgeberry platform, and are automatically build into products build on top of the Edgeberry platform.
+The values section explains the values of the Edgeberry project. These values are the foundation of the Edgeberry platform, and are automatically build into products build on top of the Edgeberry platform. This is not only why the visitor should care about the values, but also why the visitor's customers/users/... will care about Edgeberry being in the foundations of their products.
 
 #### Vision
 An open source world, where sharing is the default, aimed at collective progress.
