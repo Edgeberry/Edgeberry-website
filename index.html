@@ -341,8 +341,8 @@
         padding: 0;
         font-size: 1.8rem;
         border-radius: 50%;
-        background-color: rgba(255,255,255,0.1);
-        border: 2px solid rgba(255,255,255,0.3);
+        background-color: var(--edgeberry-carbon);
+        border: 2px solid var(--edgeberry-carbon);
         color: white;
         transition: all 0.3s ease;
         display: inline-flex;
@@ -350,6 +350,7 @@
         justify-content: center;
         margin: 0 8px;
         text-decoration: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
       }
 
       .social-btn i {
@@ -369,6 +370,34 @@
         margin-top: 20px;
         font-size: 0.9rem;
         color: rgba(255,255,255,0.7);
+      }
+
+      /* Fixed Social Buttons */
+      .social-buttons-fixed {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: row;
+        gap: 0;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .social-buttons-fixed.in-footer {
+        position: absolute;
+        bottom: auto;
+        right: auto;
+        flex-direction: row;
+      }
+
+      .footer-edgeberry {
+        position: relative;
+      }
+
+      .footer-social-placeholder {
+        opacity: 0;
+        pointer-events: none;
       }
 
       /* Carousel */
@@ -618,6 +647,16 @@
     </div>
   </nav>
 
+  <!-- Fixed Social Buttons -->
+  <div class="social-buttons-fixed" id="fixedSocialButtons">
+    <a href="https://github.com/Edgeberry" target="_blank" class="social-btn" aria-label="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://reddit.com/r/Edgeberry" target="_blank" class="social-btn" aria-label="Reddit">
+      <i class="fab fa-reddit-alien"></i>
+    </a>
+  </div>
+
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="container">
@@ -858,11 +897,11 @@
   <!-- Footer -->
   <footer class="footer-edgeberry">
     <div class="container">
-      <div class="mb-3">
-        <a href="https://github.com/Edgeberry" target="_blank" class="social-btn" aria-label="GitHub">
+      <div class="mb-3" id="footerSocialButtons">
+        <a href="https://github.com/Edgeberry" target="_blank" class="social-btn footer-social-placeholder" aria-label="GitHub">
           <i class="fab fa-github"></i>
         </a>
-        <a href="https://reddit.com/r/Edgeberry" target="_blank" class="social-btn" aria-label="Reddit">
+        <a href="https://reddit.com/r/Edgeberry" target="_blank" class="social-btn footer-social-placeholder" aria-label="Reddit">
           <i class="fab fa-reddit-alien"></i>
         </a>
       </div>
@@ -875,5 +914,43 @@
 
   <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Fixed Social Buttons Transition Script -->
+  <script>
+    function updateSocialButtonsPosition() {
+      const fixedButtons = document.getElementById('fixedSocialButtons');
+      const footerSocialContainer = document.getElementById('footerSocialButtons');
+      
+      if (!fixedButtons || !footerSocialContainer) return;
+      
+      const footerRect = footerSocialContainer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // When footer social buttons position is in viewport, move fixed buttons to match
+      if (footerRect.top < windowHeight + 100) {
+        // Calculate position to move fixed buttons to footer location
+        const targetLeft = footerRect.left + (footerRect.width / 2) - (fixedButtons.offsetWidth / 2);
+        const targetTop = footerRect.top + window.scrollY;
+        
+        fixedButtons.style.position = 'absolute';
+        fixedButtons.style.top = targetTop + 'px';
+        fixedButtons.style.left = targetLeft + 'px';
+        fixedButtons.style.right = 'auto';
+        fixedButtons.style.bottom = 'auto';
+      } else {
+        // Reset to fixed bottom-right position
+        fixedButtons.style.position = 'fixed';
+        fixedButtons.style.top = 'auto';
+        fixedButtons.style.left = 'auto';
+        fixedButtons.style.right = '30px';
+        fixedButtons.style.bottom = '30px';
+      }
+    }
+    
+    // Run on scroll, resize, and load
+    window.addEventListener('scroll', updateSocialButtonsPosition);
+    window.addEventListener('resize', updateSocialButtonsPosition);
+    window.addEventListener('load', updateSocialButtonsPosition);
+  </script>
 </body>
 </html>
