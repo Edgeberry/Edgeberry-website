@@ -53,5 +53,5 @@ An open source world, where sharing is the default, aimed at collective progress
 
 - **self-agency**
 - **open source**: Everything is open source, so that users can study and modify the code to their needs.
-- **repairability**: 
-- **activism**: fight the power; counterweight against our current defaults. "With Edgeberry, you too are on the barricades."
+- **repairability & growth**: Designed not just to be fixed, but to evolve. Accessible components for repair. Modular architecture for expansion. Built to adapt and grow with changing needs over time.
+- **activism**: Not explicit on the website - no chin-kicking. The activism is implicit in the values themselves; by choosing open source, repairability, and self-agency, users are naturally counterweights to planned obsolescence and vendor lock-in. The values speak for themselves.
