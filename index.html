@@ -117,10 +117,6 @@
   section.centre{justify-content:center;text-align:center}
   section.centre .col{max-width:560px}
 
-  .step{
-    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--muted);margin:0 0 14px;
-  }
   h1{font-size:clamp(38px,6vw,68px);line-height:1.02;letter-spacing:-.03em;margin:0 0 18px;font-weight:900}
   h2{font-size:clamp(26px,3.4vw,40px);line-height:1.08;letter-spacing:-.02em;margin:0 0 14px;font-weight:700}
   p.body{font-size:15.5px;line-height:1.6;margin:0 0 18px;max-width:44ch}
@@ -316,7 +312,6 @@
 
   <section data-title="Device">
     <div class="col">
-      <p class="step">01 — The device</p>
       <h2>An edge computer you can open, change, and keep running.</h2>
       <p class="body">The application runs on the machine itself. Sensors, control loop and logic in one box, working whether or not there is a network — a connection is something it uses, not something it needs.</p>
       <p class="body">Open source here means the object, not a firmware repository. Enclosure, boards, software and SDK are each published under their own licence: CERN-OHL-W, GPL-3, MIT. Print a replacement shell, cut a new cartridge, fork the software, or have a hundred made — without asking anyone, including us.</p>
@@ -326,7 +321,6 @@
 
   <section class="right" data-title="Compute">
     <div class="col">
-      <p class="step">02 — Compute</p>
       <h2>Powered by Raspberry Pi</h2>
       <p class="body">Choosing the Pi buys far more than a processor. Kernel support that already works, a package for nearly everything, and an answer to almost any question already written down by someone who hit it first. One image runs across the whole range, so you can develop on a Pi 5 and write the same card to a Zero. And hardware evolution becomes the Foundation's job rather than ours — the Zero 2 W is in production to at least 2030, with pin-compatible alternatives in the same footprint if it ever needs them.</p>
       <p class="body">What the carrier adds is the part a Pi on a desk never needs: 12–24 V industrial input brought down to clean 5 V, an identity chip so every unit knows which one it is, a status LED, a button and a buzzer for when there is no screen, and the 32-pin cartridge interface.</p>
@@ -336,7 +330,6 @@
 
   <section data-title="Loadout">
     <div class="col">
-      <p class="step">03 — Loadout</p>
       <h2>Every application needs its own hardware.</h2>
       <p class="body">Sooner or later an idea needs a connector nobody sells, a driver for one specific motor, or a sensor at the end of a cable. That is where projects stall — not the software, not the enclosure, but the one board that has to exist and doesn't.</p>
       <p class="body">A cartridge is that board, and most of it is already decided. The KiCad template carries the outline, the mounting, the 32-pin interface and the faceplate envelope, so the only part you design is the part only you know about. Swap the cartridge and the device becomes a different instrument, with the compute, the enclosure and the software untouched.</p>
@@ -349,8 +342,7 @@
 
   <section class="right" data-title="Mounting">
     <div class="col">
-      <p class="step">04 — Mounting</p>
-      <h2>Attach it anywhere.</h2>
+      <h2>Build it into anything.</h2>
       <p class="body">You decide where the device sits in your machine, and you print the piece that puts it there. A dovetail rail runs down each side of the enclosure, and anything that slides onto it holds the device.</p>
       <p class="body">A foot to screw to a panel, a clip, a bracket shaped to your own frame — each prints as a single part. Two exist so far. The rest is up to whoever needs them.</p>
       <p class="body dim">Dovetail rail both sides · 92.7 mm long · mounts print in one piece</p>
@@ -361,7 +353,6 @@
 
   <section data-title="Branding">
     <div class="col">
-      <p class="step">05 — Branding</p>
       <h2>Make it yours.</h2>
       <p class="body">The device lives in the technical space of your machine — a cabinet, a panel, a bay. The people who open that panel are your people, and a unit in your colour carrying your logo is quicker to recognise, easier to keep track of, and unmistakably part of your system.</p>
       <p class="body">Choose the filament for the shell and both faceplates, then drop your logo into the recessed label on the top face. Every unit is printed to order, so the colour is a choice rather than a surcharge. Take the label away as a print-ready SVG with its cut contour, or have the devices built already wearing it.</p>
@@ -383,7 +374,6 @@
 
   <section class="right" data-title="Cloud">
     <div class="col">
-      <p class="step">06 — Cloud connection</p>
       <h2>Seamlessly connected.</h2>
       <p class="body">You write your application with the Edgeberry SDK, in Node.js or Python, and the hardware arrives as functions. Read a sensor, drive an output, publish an event. No protocol code, no drivers, nothing about buses.</p>
       <p class="body">The Device Hub carries it from there. Every device has an identity, a group and a state, so your server-side code can invoke a method on one or subscribe to what it sends as though it were any other API. Node-RED sits on top of that for anyone who would rather wire a flow than write one.</p>
@@ -393,7 +383,6 @@
 
   <section data-title="Build" id="build">
     <div class="col buy">
-      <p class="step">07 — Build it</p>
       <h2>Everything on this page is downloadable.</h2>
       <p class="body">Enclosure, mounts, cartridge template, label artwork, firmware. Print it, cut it, flash it — the device you just configured is yours to make, and none of it is behind a login.</p>
       <div class="controls">
