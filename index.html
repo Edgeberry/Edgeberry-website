@@ -418,7 +418,7 @@ const LINKS = {
   reddit:    'https://www.reddit.com/r/Edgeberry/',
   enclosure: 'https://github.com/Edgeberry/Edgeberry-hardware',
   cartridge: 'https://github.com/Edgeberry/Edgeberry-Cartridge-Template',
-  mounts:    'https://www.thingiverse.com/edgeberry/designs',
+  mounts:    'https://www.thingiverse.com/thing:7238995',
   shop:      'https://www.elecrow.com/store/Edgeberry',
   quote:     'quote@edgeberry.io'
 };
@@ -902,13 +902,15 @@ const rim =new THREE.DirectionalLight(0xffffff,.32); rim.position.set(50,90,-190
 /* far enough that the Pi Zero, which sits at z 50.1..80.1, clears the shell
    front at 92.7 with room to read it */
 const CARRIER_SLIDE = 56;
-/* Scaling the model beats pushing the camera back: at the hero the device is
-   a twentieth of its size and effectively invisible inside the glow, without
-   a camera distance that would wreck depth precision for everything else.
-   root.position carries the centring offset, so it has to scale with it or the
-   model drifts off centre as it grows. */
+/* `scale` is kept in the keyframes even though nothing uses it now: it is the
+   only way to change the model's apparent size without moving the camera, and
+   camera distance is load-bearing for depth precision. */
 const KEY=[
-  {az: 2.55, el: .16, dist: 900, tgt:[0,0,0],    pan:   0, shell:0, cart:0, slide:0, scale:0.045},
+  /* The hero holds no device at all — it is the creature's page. Its keyframe
+     is a copy of the next one so that nothing moves across the first scroll:
+     the device is simply not drawn until the Device beat, and when it is drawn
+     it is already exactly where it will stay. Motion starts at Compute. */
+  {az:  .72, el: .50, dist: 350, tgt:[0,0,0],    pan: -50, shell:0, cart:0, slide:0},
   {az:  .72, el: .50, dist: 350, tgt:[0,0,0],    pan: -50, shell:0, cart:0, slide:0},
   {az:  .95, el: .55, dist: 470, tgt:[0,2,34],   pan:  52, shell:0, cart:0, slide:1},
   {az: 2.36, el: .52, dist: 430, tgt:[0,0,-25],  pan: -54, shell:0, cart:1, slide:0},
@@ -1156,7 +1158,7 @@ let autoCart=!reduce, autoAt=0, autoIdx=0;   // fitted with 'custom', so the fir
 let cartBeatAt=0;
 const CART_INTERVAL=2800, CART_HOLD=1500;   // pause after the slide-out, then turn
 let autoMount=!reduce, mountAt=0, mountIdx=0, mountBeatAt=0;
-const MOUNT_INTERVAL=3600, MOUNT_HOLD=1800;   // settle on arrival, then change
+const MOUNT_INTERVAL=4800, MOUNT_HOLD=3000;   // settle on arrival, then change
 const MOUNT_ORDER=['lug','block','none'];
 
 function resize(){
@@ -1317,6 +1319,8 @@ function frame(now){
     }
   } else { mountBeatAt=0; mountAt=now; }
 
+  // nothing of the device exists on the hero; it is revealed, not animated in
+  root.visible = progress > 0.5;
   const onCloud = Math.abs(progress - 6) < 0.5;
   for(const g of fleet){
     g.visible = onCloud;
