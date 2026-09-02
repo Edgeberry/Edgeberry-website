@@ -96,7 +96,7 @@
      the corner links all pass behind it. main and its sections are
      pointer-events:none, so raising the layer does not steal clicks from the
      things underneath — only the chips inside opt back in. */
-  main{position:relative;z-index:7}
+  main{position:relative;z-index:7;pointer-events:none}
   section{
     height:100vh;display:flex;align-items:center;
     /* columns sit well inside the edges, so text and object share the middle
