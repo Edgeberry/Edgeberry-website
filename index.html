@@ -361,7 +361,8 @@
       <p class="body dim">49.8 × 63.2 mm · 32-pin interface · 95 × 27 mm faceplate · template on GitHub</p>
       <div class="controls" id="cartpick"></div>
       <p class="dl">Need help designing a tailored Hardware Cartridge?
-        <a id="lnk-ask" target="_blank" rel="noopener">Ask here…</a></p>
+        <a id="cartridgebtn" target="_blank" rel="noopener">Ask here…</a>
+      </p>
     </div>
   </section>
 
@@ -442,11 +443,10 @@ const GEO = {"parts": {"shell": {"min": [-47.509171, -14.65, -0.0], "step": [0.0
 const LINKS = {
   github:    'https://github.com/Edgeberry',
   reddit:    'https://www.reddit.com/r/Edgeberry/',
-  enclosure: 'https://github.com/Edgeberry/Edgeberry-hardware',
-  cartridge: 'https://github.com/Edgeberry/Edgeberry-Cartridge-Template',
+  enclosure: 'https://www.thingiverse.com/thing:7238995',
   mounts:    'https://www.thingiverse.com/thing:7238995',
   shop:      'https://www.elecrow.com/store/Edgeberry',
-  quote:     'quote@edgeberry.io',
+  quote:     'info@edgeberry.io',
   oshwa:      'https://certification.oshwa.org/be000020.html',
   poweredbypi:'https://www.raspberrypi.com/for-industry/powered-by/product-catalogue/?category=SBCs',
   kicad:      'https://www.kicad.org/download/'
@@ -1071,7 +1071,7 @@ document.getElementById('artreset').addEventListener('click',()=>{
 for(const [id,url] of [['lnk-gh',LINKS.github],['lnk-rd',LINKS.reddit],
                        ['lnk-gh2',LINKS.github],['lnk-rd2',LINKS.reddit],
                        ['lnk-stl',LINKS.enclosure],['lnk-mount-stl',LINKS.mounts],
-                       ['lnk-ask',LINKS.reddit],
+                       ['lnk-ask',LINKS.email],
                        ['lnk-oshw',LINKS.oshwa],['lnk-pi',LINKS.poweredbypi],
                        ['lnk-kicad',LINKS.kicad]]){
   const el=document.getElementById(id); if(el) el.href=url;
@@ -1107,6 +1107,13 @@ document.getElementById('quotebtn').addEventListener('click',()=>{
     .join('\n');
   location.href='mailto:'+LINKS.quote
     +'?subject='+encodeURIComponent('Edgeberry Zero — quote request')
+    +'&body='+encodeURIComponent(body);
+});
+
+document.getElementById('cartridgebtn').addEventListener('click',()=>{
+  const body=['I need a Cartridge tailored to my application. These are the specifications:']
+  location.href='mailto:'+LINKS.quote
+    +'?subject='+encodeURIComponent('Custom Edgeberry Hardware Cartridge request')
     +'&body='+encodeURIComponent(body);
 });
 
