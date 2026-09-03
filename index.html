@@ -361,7 +361,7 @@
       <p class="body dim">49.8 × 63.2 mm · 32-pin interface · 95 × 27 mm faceplate · template on GitHub</p>
       <div class="controls" id="cartpick"></div>
       <p class="dl">Need help designing a tailored Hardware Cartridge?
-        <a id="cartridgebtn" target="_blank" rel="noopener">Ask here…</a>
+        <a id="cartridgebtn" href="#" role="button">Ask here…</a>
       </p>
     </div>
   </section>
@@ -1071,7 +1071,6 @@ document.getElementById('artreset').addEventListener('click',()=>{
 for(const [id,url] of [['lnk-gh',LINKS.github],['lnk-rd',LINKS.reddit],
                        ['lnk-gh2',LINKS.github],['lnk-rd2',LINKS.reddit],
                        ['lnk-stl',LINKS.enclosure],['lnk-mount-stl',LINKS.mounts],
-                       ['lnk-ask',LINKS.email],
                        ['lnk-oshw',LINKS.oshwa],['lnk-pi',LINKS.poweredbypi],
                        ['lnk-kicad',LINKS.kicad]]){
   const el=document.getElementById(id); if(el) el.href=url;
@@ -1110,8 +1109,10 @@ document.getElementById('quotebtn').addEventListener('click',()=>{
     +'&body='+encodeURIComponent(body);
 });
 
-document.getElementById('cartridgebtn').addEventListener('click',()=>{
-  const body=['I need a Cartridge tailored to my application. These are the specifications:']
+document.getElementById('cartridgebtn').addEventListener('click',(e)=>{
+  e.preventDefault();
+  const body=['I need a Cartridge tailored to my application. These are the specifications:',
+              '','','Application: ','Interfaces needed: ','Quantity: ',''].join('\n');
   location.href='mailto:'+LINKS.quote
     +'?subject='+encodeURIComponent('Custom Edgeberry Hardware Cartridge request')
     +'&body='+encodeURIComponent(body);
