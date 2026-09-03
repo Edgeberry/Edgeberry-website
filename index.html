@@ -129,14 +129,16 @@
   .dim{color:var(--muted)}
 
   .controls{display:flex;gap:7px;flex-wrap:wrap;pointer-events:auto;margin-top:6px}
-  button.chip,label.chip{
+  button.chip,label.chip,a.chip{
     font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
     color:var(--ink);background:rgba(255,255,255,.10);border:1px solid var(--line);
     border-radius:2px;padding:9px 12px;cursor:pointer;transition:background .15s ease;
   }
-  button.chip:hover,label.chip:hover{background:rgba(255,255,255,.2)}
+  button.chip:hover,label.chip:hover,a.chip:hover{background:rgba(255,255,255,.2)}
   button.chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
-  button.chip:focus-visible,label.chip:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+  button.chip:focus-visible,label.chip:focus-within,a.chip:focus-visible{
+    outline:2px solid var(--accent);outline-offset:2px}
+  a.chip{text-decoration:none}
   label.chip input{position:absolute;width:1px;height:1px;opacity:0}
 
   .swatchrow{display:flex;align-items:center;gap:8px;margin:0 0 10px;pointer-events:auto}
@@ -193,7 +195,9 @@
   .buybtn{display:inline-flex;align-items:center;gap:9px;background:var(--accent);
           border-color:var(--accent);color:#fff;padding:10px 16px}
   .buybtn:hover{background:#1a24ff;border-color:#1a24ff}
-  .buybtn svg{width:16px;height:16px}
+  /* the quote icon is drawn in strokes, the GitHub mark in fills — without
+     this the filled one stays default black against a dark button */
+  .buybtn svg{width:16px;height:16px;fill:currentColor}
 
   /* section rail */
   /* Anchored mid-page and pushed toward the text column, so a label reads as
@@ -202,6 +206,21 @@
      mark is not: it is reproduced exactly as issued and given a light plate,
      because a certification mark that has been recoloured is no longer the
      mark that was issued. */
+  /* Dimension overlay: hairlines and figures projected from the model's own
+     bounding box, so they track the camera instead of being drawn on. Sits
+     under the copy and over the canvas, and is never in the way of a click. */
+  /* width and height have to be stated. An <svg> is a replaced element, so
+     inset:0 alone does not stretch it — it falls back to the default 300x150
+     box at the top-left corner and clips everything drawn outside that, which
+     is all of it. */
+  #dims{position:fixed;inset:0;width:100%;height:100%;
+        z-index:3;pointer-events:none;opacity:0;transition:opacity .35s ease}
+  #dims line{stroke:rgba(255,255,255,.55);stroke-width:1}
+  #dims polygon{fill:rgba(255,255,255,.55)}
+  #dims text{fill:rgba(255,255,255,.72);font-family:var(--mono);font-size:11px;
+             letter-spacing:.04em;paint-order:stroke;
+             stroke:rgba(8,10,12,.75);stroke-width:3px}
+
   .badges{position:fixed;inset:0;z-index:4;pointer-events:none}
   /* the marks link to whoever issues them; the layer stays click-through */
   .badge a{pointer-events:auto;display:block;text-decoration:none;cursor:pointer}
@@ -297,6 +316,7 @@
   <a href="#build">Build it</a>
 </nav>
 
+<svg id="dims" aria-hidden="true"></svg>
 <div class="badges" id="badges" aria-hidden="true">
   <figure class="badge" data-at="1" data-side="right" data-shift="1"><a id="lnk-oshw" target="_blank" rel="noopener"><img alt="" src="data:image/png;base64,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"></a></figure>
   <figure class="badge txt" data-at="3" data-side="left" data-shift="2">
@@ -413,12 +433,14 @@
       <h2>Everything on this page is downloadable.</h2>
       <p class="body">Enclosure, mounts, cartridge template, label artwork, firmware. Print it, cut it, flash it — the device you just configured is yours to make, and none of it is behind a login.</p>
       <div class="controls">
-        <a class="chip" id="lnk-gh2" target="_blank" rel="noopener">Everything on GitHub →</a>
-        <a class="chip" id="lnk-rd2" target="_blank" rel="noopener">r/Edgeberry</a>
+        <a class="chip buybtn" id="lnk-gh2" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C16.9 4.9 18 5.2 18 5.2c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+          Build now
+        </a>
       </div>
 
       <p class="orsep">or, if you would rather not</p>
-      <h3 class="quoteh">Have the maintainers build it.</h3>
+      <h3 class="quoteh">Have us build it.</h3>
       <p class="body small">Same device, printed and assembled to order. The button opens a mail with the specification already filled in.</p>
       <table class="spec" id="specTable"></table>
       <div class="controls">
@@ -1069,7 +1091,7 @@ document.getElementById('artreset').addEventListener('click',()=>{
 });
 
 for(const [id,url] of [['lnk-gh',LINKS.github],['lnk-rd',LINKS.reddit],
-                       ['lnk-gh2',LINKS.github],['lnk-rd2',LINKS.reddit],
+                       ['lnk-gh2',LINKS.github],
                        ['lnk-stl',LINKS.enclosure],['lnk-mount-stl',LINKS.mounts],
                        ['lnk-oshw',LINKS.oshwa],['lnk-pi',LINKS.poweredbypi],
                        ['lnk-kicad',LINKS.kicad]]){
@@ -1081,8 +1103,9 @@ const CART_LABEL={none:'none',custom:'none — blank panel',
 const MOUNT_LABEL={none:'none',lug:'lugs ×4',block:'blocks ×4'};
 function specRows(){
   return [
+    /* One colour, one row: the finish picker sets the shell and both faceplates
+       together, so listing them separately only ever repeated the same value. */
     ['Enclosure',  state.shell.toUpperCase()+'  ·  Bambu PETG'],
-    ['Faceplates', state.plates.toUpperCase()],
     ['Cartridge',  CART_LABEL[cartKey]],
     ['Mounting',   MOUNT_LABEL[mountType]],
     ['Label plate',state.plate.toUpperCase()],
@@ -1093,9 +1116,11 @@ function writeSpec(){
   const t=document.getElementById('specTable');
   if(!t) return;
   t.innerHTML=specRows().map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>').join('');
+  /* Only worth saying when there is actually a file to attach: with the default
+     label there is nothing to carry, so the line stays empty. */
   const note=document.getElementById('attachnote');
   if(note) note.textContent = artFullBleed
-    ? 'Mail clients cannot attach files from a link — nothing further needed for the default label.'
+    ? ''
     : 'Download the label SVG above and attach it to the mail: a link cannot carry the file for you.';
 }
 document.getElementById('quotebtn').addEventListener('click',()=>{
@@ -1243,6 +1268,80 @@ function drawBadges(){
 document.getElementById('explore').addEventListener('click',()=>{
   document.querySelectorAll('section')[1].scrollIntoView({behavior:'smooth'});
 });
+
+/* ---------- dimensions ---------- */
+/* Three edges of the model's own bounding box, projected through the live
+   camera every frame and drawn as hairlines offset outward from the middle of
+   the object. Nothing is added to the 3D scene and no geometry is touched, so
+   this cannot interfere with the model, the shadows or the picking — if the
+   overlay were removed the scene would be byte-identical. The figures come
+   from GEO.box, so they are the measured part rather than typed-in copy. */
+const dimSvg=document.getElementById('dims');
+const DIM_MM=[Math.round(SIZE[0]), Math.round(SIZE[1]), Math.round(SIZE[2])];
+const DIM_EDGES=[
+  // [from, to] as bounding-box corners: 0 = min, 1 = max on each axis
+  [[0,0,1],[1,0,1]],   // width  — along the front bottom edge
+  [[1,0,1],[1,1,1]],   // height — up the front right corner
+  [[1,0,0],[1,0,1]]    // length — along the right bottom edge
+];
+const _dv=new THREE.Vector3();
+function corner(c){
+  return new THREE.Vector3(c[0]?BMAX[0]:BMIN[0], c[1]?BMAX[1]:BMIN[1], c[2]?BMAX[2]:BMIN[2]);
+}
+function project(v){
+  _dv.copy(v).applyMatrix4(root.matrixWorld).project(camera);
+  return [(_dv.x*0.5+0.5)*innerWidth, (-_dv.y*0.5+0.5)*innerHeight];
+}
+function drawDims(show){
+  dimSvg.style.opacity = show ? '1' : '0';
+  if(!show) return;
+  const mid=project(new THREE.Vector3(CTR[0],CTR[1],CTR[2]));
+  const GAP=7, OFF=30, OVER=6, HEAD=7, HALF=2.6;
+  let out='';
+  DIM_EDGES.forEach(([a,b],i)=>{
+    const A=project(corner(a)), B=project(corner(b));
+    // outward normal: away from the middle of the object on screen
+    let nx=-(B[1]-A[1]), ny=B[0]-A[0];
+    const L=Math.hypot(nx,ny)||1; nx/=L; ny/=L;
+    if(((A[0]+B[0])/2-mid[0])*nx + ((A[1]+B[1])/2-mid[1])*ny < 0){ nx=-nx; ny=-ny; }
+
+    // extension lines: start clear of the part, run past the dimension line
+    const ext=(P)=>`<line x1="${(P[0]+nx*GAP).toFixed(1)}" y1="${(P[1]+ny*GAP).toFixed(1)}" `
+                 + `x2="${(P[0]+nx*(OFF+OVER)).toFixed(1)}" y2="${(P[1]+ny*(OFF+OVER)).toFixed(1)}"/>`;
+    out += ext(A) + ext(B);
+
+    // the dimension line itself, broken to make room for the figure
+    const p=[A[0]+nx*OFF, A[1]+ny*OFF], q=[B[0]+nx*OFF, B[1]+ny*OFF];
+    let ux=q[0]-p[0], uy=q[1]-p[1];
+    const len=Math.hypot(ux,uy)||1; ux/=len; uy/=len;
+    const label=DIM_MM[i]+' mm';
+    const half=Math.min(len/2-HEAD-4, label.length*3.4+5);
+    const cx=(p[0]+q[0])/2, cy=(p[1]+q[1])/2;
+    const seg=(P,Q)=>`<line x1="${P[0].toFixed(1)}" y1="${P[1].toFixed(1)}" x2="${Q[0].toFixed(1)}" y2="${Q[1].toFixed(1)}"/>`;
+    if(half>0){
+      out += seg(p,[cx-ux*half, cy-uy*half]) + seg([cx+ux*half, cy+uy*half], q);
+    } else {
+      out += seg(p,q);
+    }
+
+    // arrowheads, pointing outward into the extension lines
+    const head=(P,sx,sy)=>{
+      const bx=P[0]-sx*HEAD, by=P[1]-sy*HEAD;
+      return `<polygon points="${P[0].toFixed(1)},${P[1].toFixed(1)} `
+           + `${(bx-sy*HALF).toFixed(1)},${(by+sx*HALF).toFixed(1)} `
+           + `${(bx+sy*HALF).toFixed(1)},${(by-sx*HALF).toFixed(1)}"/>`;
+    };
+    out += head(p,-ux,-uy) + head(q,ux,uy);
+
+    // the figure sits in the break, aligned with the line and never upside down
+    let deg=Math.atan2(uy,ux)*180/Math.PI;
+    if(deg>90) deg-=180; else if(deg<-90) deg+=180;
+    out += `<text x="${cx.toFixed(1)}" y="${cy.toFixed(1)}" text-anchor="middle" `
+         + `dominant-baseline="central" transform="rotate(${deg.toFixed(1)} ${cx.toFixed(1)} ${cy.toFixed(1)})">`
+         + `${label}</text>`;
+  });
+  dimSvg.innerHTML=out;
+}
 
 const rail=document.getElementById('rail');
 const dots=sections.map((s,i)=>{
@@ -1424,6 +1523,7 @@ function frame(now){
     }
   } else { mountBeatAt=0; mountAt=now; }
 
+  drawDims(Math.abs(progress - 4) < 0.35);   // the mounting beat, and only there
   const onCloud = Math.abs(progress - 6) < 0.5;
   for(const g of fleet){
     g.visible = onCloud;
